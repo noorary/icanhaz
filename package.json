@@ -1,0 +1,27 @@
+{
+  "name": "lk2020-nodebot",
+  "version": "1.0.0",
+  "description": "Example bot for laudekoodit 2020",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Laudekoodit/lk2020-nodebot.git"
+  },
+  "keywords": [
+    "telegram",
+    "bot"
+  ],
+  "author": "Santtu Lempinen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Laudekoodit/lk2020-nodebot/issues"
+  },
+  "homepage": "https://github.com/Laudekoodit/lk2020-nodebot#readme",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "telegraf": "^3.36.0"
+  }
+}
