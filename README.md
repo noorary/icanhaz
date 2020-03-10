@@ -1,4 +1,4 @@
-# Welcome to Laudekoodit 2020
+# Example bot and guide
 
 ## Prerequisites
 
@@ -36,4 +36,6 @@ To build and run:
 
 ### More information
 
-Next you probably want start hacking and hustling on your teams bot. I've heavily commented index.js so you can use it as starting point for your own. For more detailed information visit https://telegraf.js.org/ 
+Next you probably want start hacking and hustling on your teams bot. I've heavily commented index.js so you can use it as starting point for your own. For more detailed information visit https://telegraf.js.org/
+
+You can also ask for help from out telegram-channel at: https://t.me/laudekoodit
