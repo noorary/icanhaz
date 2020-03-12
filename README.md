@@ -25,7 +25,7 @@ Your conversation should look something like this
 Next we need to connect the code in this repository to the bot we just created.
 
 1. Create a file called '.env' inside project directory
-2. Inside .env write 'BOT_TOKEN=[INSERT TOKEN YOU COPIED HERE]' without the [] brackets
+2. Inside .env write 'TOKEN=[INSERT TOKEN YOU COPIED HERE]' without the [] brackets
 
 **Congratulation your bot is now finished. Run the code and test it out**
 
