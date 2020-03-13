@@ -78,6 +78,8 @@ const doned = new WizardScene(
         var name = ctx.message.text
         markDoned(name)
 
+        return ctx.scene.leave();
+
     }
 )
 
