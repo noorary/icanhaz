@@ -66,9 +66,24 @@ const task = new WizardScene(
     }
 );
 
+const doned = new WizardScene(
+    'doned',
+
+    (ctx) => {
+        ctx.reply('Plz gibe task u have doned');
+        return ctx.wizard.next();
+    },
+
+    (ctx) => {
+        var name = ctx.message.text
+        markDoned(name)
+
+    }
+)
+
 // ------------- SETUP -------------
 
-const stage = new Stage([defaultscene, cat, task]);
+const stage = new Stage([defaultscene, cat, task, doned]);
 icanhazbot.use(session());
 icanhazbot.use(stage.middleware());
 
@@ -84,6 +99,10 @@ icanhazbot.command('cat', (ctx) => {
 icanhazbot.command('task', (ctx) => {
     ctx.scene.enter('taskadder');
 });
+
+icanhazbot.command('done', (ctx) => {
+    ctx.scene.enter('doned')
+})
 
 
 icanhazbot.command('hello', (ctx) => ctx.reply('Hello'));
