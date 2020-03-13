@@ -17,27 +17,14 @@ var tasks = [];
 const NO_CATS = 'no catz :c';
 const NO_TASKS = 'can i haz nothing :3';
 
-icanhazbot.command('cats', (ctx) => printList(ctx, cats, NO_CATS));
-icanhazbot.command('tasks', (ctx) => printList(ctx, tasks, NO_TASKS));
+// ------------- SCENES -------------
 
-icanhazbot.command('hello', (ctx) => ctx.reply('Hello'));
-
-// const stepHandler = new Composer()
-// stepHandler.action('next', (ctx) => {
-//   ctx.reply('Step 2. Via inline button')
-//   return ctx.wizard.next()
-// })
-// stepHandler.command('next', (ctx) => {
-//   ctx.reply('Step 2. Via command')
-//   return ctx.wizard.next()
-// })
-// stepHandler.use((ctx) => ctx.replyWithsMarkdown('Press `Next` button or type /next'))
-
-const helloworld = new WizardScene(
-    'helloworld',
+const defaultscene = new WizardScene(
+    'defaultscene',
 
     (ctx) => {
         ctx.reply('hello :3');
+        // TODO: add commands
         return ctx.scene.leave();
     }
 );
@@ -79,11 +66,32 @@ const task = new WizardScene(
     }
 );
 
-const stage = new Stage([helloworld, cat, task], { default: 'helloworld' });
+// ------------- SETUP -------------
+
+const stage = new Stage([helloworld, cat, task]);
 icanhazbot.use(session());
 icanhazbot.use(stage.middleware());
 
+// ------------- COMMANDS -------------
+
+icanhazbot.command('cats', (ctx) => printList(ctx, cats, NO_CATS));
+icanhazbot.command('tasks', (ctx) => printList(ctx, tasks, NO_TASKS));
+
+icanhazbot.command('cat', (ctx) => {
+    ctx.scene.enter('catadder');
+});
+
+icanhazbot.command('task', (ctx) => {
+    ctx.scene.enter('taskadder');
+});
+
+icanhazbot.command('hello', (ctx) => ctx.reply('Hello'));
+
+// ------------- LAUNCH -------------
+
 icanhazbot.launch();
+
+// ------------- UTILS -------------
 
 /*
  * Print all items in list. If list is empty, show msg.
