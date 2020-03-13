@@ -14,12 +14,12 @@ icanhazbot.start((ctx) => ctx.reply('Welcome to ICanHazBot!'));
 var cats = [];
 var tasks = [];
 var commands = [
-    {name: '/cat', desc: 'add new cat'},
-    {name: '/cats', desc: 'list cats'},
-    {name: '/task', desc: 'add new task'},
-    {name: '/tasks', desc: 'list tasks'},
-    {name: '/done', desc: 'set task doned'},
-    {name: '/clear', desc: 'mark all tasks not doned'}
+    { name: '/cat', desc: 'add new cat' },
+    { name: '/cats', desc: 'list cats' },
+    { name: '/task', desc: 'add new task' },
+    { name: '/tasks', desc: 'list tasks' },
+    { name: '/done', desc: 'set task doned' },
+    { name: '/clear', desc: 'mark all tasks not doned' },
 ];
 
 const NO_CATS = 'no catz :c';
@@ -32,6 +32,7 @@ const defaultscene = new WizardScene(
 
     (ctx) => {
         ctx.reply('hello :3');
+        printList(ctx, commands, commandPrinter, '');
         // TODO: add commands
         return ctx.scene.leave();
     }
@@ -117,7 +118,7 @@ icanhazbot.command('done', (ctx) => {
 
 icanhazbot.command('clear', (ctx) => clearDoned());
 
-icanhazbot.command('hello', (ctx) => commandPrinter(commands));
+icanhazbot.command('hello', (ctx) => ctx.scene.enter('defaultscene'));
 
 // ------------- LAUNCH -------------
 
