@@ -100,3 +100,14 @@ function printList(ctx, mylist, nomsg) {
         ctx.reply(tempStr);
     }
 }
+
+function markDoned(name, done) {
+    for(var i in tasks) {
+        if(tasks[i].name = name) {
+            tasks[i].done = true
+            break;
+        }
+    }
+
+
+}
