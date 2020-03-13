@@ -13,6 +13,14 @@ icanhazbot.start((ctx) => ctx.reply('Welcome to ICanHazBot!'));
 
 var cats = [];
 var tasks = [];
+var commands = [
+    {name: '/cat', desc: 'add new cat'},
+    {name: '/cats', desc: 'list cats'},
+    {name: '/task', desc: 'add new task'},
+    {name: '/tasks', desc: 'list tasks'},
+    {name: '/done', desc: 'set task doned'},
+    {name: '/clear', desc: 'mark all tasks not doned'}
+];
 
 const NO_CATS = 'no catz :c';
 const NO_TASKS = 'can i haz nothing :3';
