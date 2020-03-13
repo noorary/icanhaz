@@ -117,7 +117,7 @@ icanhazbot.command('done', (ctx) => {
 
 icanhazbot.command('clear', (ctx) => clearDoned());
 
-icanhazbot.command('hello', (ctx) => ctx.reply('Hello'));
+icanhazbot.command('hello', (ctx) => commandPrinter(commands));
 
 // ------------- LAUNCH -------------
 
