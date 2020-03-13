@@ -56,9 +56,9 @@ const task = new WizardScene(
     },
 
     (ctx) => {
-        var newtask = {name: ctx.message.text, done:false};
+        var newtask = { name: ctx.message.text, done: false };
 
-        tasks.push(newtask)
+        tasks.push(newtask);
 
         ctx.reply(`You added task ${newtask.name}`);
 
@@ -74,8 +74,10 @@ icanhazbot.use(stage.middleware());
 
 // ------------- COMMANDS -------------
 
-icanhazbot.command('cats', (ctx) => printList(ctx, cats, NO_CATS));
-icanhazbot.command('tasks', (ctx) => printList(ctx, tasks, NO_TASKS));
+icanhazbot.command('cats', (ctx) => printList(ctx, cats, catPrinter, NO_CATS));
+icanhazbot.command('tasks', (ctx) =>
+    printList(ctx, tasks, taskPrinter, NO_TASKS)
+);
 
 icanhazbot.command('cat', (ctx) => {
     ctx.scene.enter('catadder');
@@ -84,7 +86,6 @@ icanhazbot.command('cat', (ctx) => {
 icanhazbot.command('task', (ctx) => {
     ctx.scene.enter('taskadder');
 });
-
 
 icanhazbot.command('hello', (ctx) => ctx.reply('Hello'));
 
@@ -97,26 +98,33 @@ icanhazbot.launch();
 /*
  * Print all items in list. If list is empty, show msg.
  */
-function printList(ctx, mylist, nomsg) {
+function printList(ctx, mylist, formatter, nomsg) {
     if (mylist.length == 0) {
         ctx.reply(nomsg);
     } else {
         var tempStr = '';
         for (var i = 0; i < mylist.length - 1; i++) {
-            tempStr = tempStr.concat(mylist[i] + '\n');
+            tempStr = tempStr.concat(formatter(mylist[i]) + '\n');
         }
-        tempStr = tempStr.concat(mylist[mylist.length - 1]);
+        tempStr = tempStr.concat(formatter(mylist[mylist.length - 1]));
         ctx.reply(tempStr);
     }
 }
 
 function markDoned(name, done) {
-    for(var i in tasks) {
-        if(tasks[i].name = name) {
-            tasks[i].done = true
+    for (var i in tasks) {
+        if ((tasks[i].name = name)) {
+            tasks[i].done = true;
             break;
         }
     }
+}
 
+function taskPrinter(task) {
+    const doned = task.done ? ':3' : ':<';
+    return task.name + ', doned? ' + doned;
+}
 
+function catPrinter(cat) {
+    return cat;
 }
