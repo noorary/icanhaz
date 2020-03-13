@@ -140,6 +140,9 @@ function markDoned(name, done) {
             break;
         }
     }
+    if (allDoned) {
+        niceJob();
+    }
 }
 
 function clearDoned() {
@@ -159,4 +162,18 @@ function catPrinter(cat) {
 
 function commandPrinter(command) {
     return command.name + ' - ' + command.desc;
+}
+
+function allDoned() {
+    const doned = true;
+    for (var i in tasks) {
+        if (!tasks[i].done) {
+            doned = false;
+        }
+    }
+    return doned;
+}
+
+function niceJob() {
+    console.log('u did it :3');
 }
