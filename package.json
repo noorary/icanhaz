@@ -1,25 +1,25 @@
 {
-  "name": "lk2020-nodebot",
+  "name": "icanhazbot",
   "version": "1.0.0",
-  "description": "Example bot for laudekoodit 2020",
+  "description": "No longer let your cats make a fool of you",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Laudekoodit/lk2020-nodebot.git"
+    "url": "git+https://github.com/noorary/icanhaz.git"
   },
   "keywords": [
     "telegram",
     "bot"
   ],
-  "author": "Santtu Lempinen",
+  "author": "Noora & Em",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Laudekoodit/lk2020-nodebot/issues"
+    "url": "https://github.com/noorary/icanhaz/issues"
   },
-  "homepage": "https://github.com/Laudekoodit/lk2020-nodebot#readme",
+  "homepage": "https://github.com/noorary/icanhaz#readme",
   "dependencies": {
     "dotenv": "^8.2.0",
     "telegraf": "^3.36.0"
