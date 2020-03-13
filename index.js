@@ -56,11 +56,11 @@ const task = new WizardScene(
     },
 
     (ctx) => {
-        newtask = ctx.message.text;
+        var newtask = {name: ctx.message.text, done:false};
 
-        ctx.reply(`You added cat ${newtask}`);
+        tasks.push(newtask)
 
-        // todo: add task
+        ctx.reply(`You added task ${newtask.name}`);
 
         return ctx.scene.leave();
     }
@@ -68,7 +68,7 @@ const task = new WizardScene(
 
 // ------------- SETUP -------------
 
-const stage = new Stage([helloworld, cat, task]);
+const stage = new Stage([defaultscene, cat, task]);
 icanhazbot.use(session());
 icanhazbot.use(stage.middleware());
 
@@ -84,6 +84,7 @@ icanhazbot.command('cat', (ctx) => {
 icanhazbot.command('task', (ctx) => {
     ctx.scene.enter('taskadder');
 });
+
 
 icanhazbot.command('hello', (ctx) => ctx.reply('Hello'));
 
