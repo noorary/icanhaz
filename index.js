@@ -9,31 +9,23 @@ icanhazbot.start((ctx) => ctx.reply('Welcome to ICanHazBot!'));
 var cats = ['Luke', 'Leia', 'Mökö', 'Manteli'];
 var tasks = [];
 
-icanhazbot.command('showcats', (ctx) => printCats(ctx));
-icanhazbot.command('showtasks', (ctx) => printTasks(ctx));
+icanhazbot.command('showcats', (ctx) => printList(ctx, cats, 'no catz :c'));
+icanhazbot.command('showtasks', (ctx) =>
+    printList(ctx, tasks, 'can i haz nothing :3')
+);
 
-function printCats(ctx) {
-    if (cats.length == 0) {
-        ctx.reply('no catz :c');
+/*
+ * Print all items in list. If list is empty, show msg.
+ */
+function printList(ctx, mylist, nomsg) {
+    if (mylist.length == 0) {
+        ctx.reply(nomsg);
     } else {
         var tempStr = '';
-        for (var i = 0; i < cats.length - 1; i++) {
-            tempStr = tempStr.concat(cats[i] + '\n');
+        for (var i = 0; i < mylist.length - 1; i++) {
+            tempStr = tempStr.concat(mylist[i] + '\n');
         }
-        tempStr = tempStr.concat(cats[cats.length - 1]);
-        ctx.reply(tempStr);
-    }
-}
-
-function printTasks(ctx) {
-    if (tasks.length == 0) {
-        ctx.reply('can i haz nothing :3');
-    } else {
-        var tempStr = '';
-        for (var i = 0; i < printTasks.length - 1; i++) {
-            tempStr = tempStr.concat(tasks[i] + '\n');
-        }
-        tempStr = tempStr.concat(tasks[tasks.length - 1]);
+        tempStr = tempStr.concat(mylist[mylist.length - 1]);
         ctx.reply(tempStr);
     }
 }
