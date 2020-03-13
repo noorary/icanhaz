@@ -108,6 +108,8 @@ icanhazbot.command('done', (ctx) => {
     ctx.scene.enter('doned')
 })
 
+icanhazbot.command('clear', (ctx) => clearDoned())
+
 icanhazbot.command('hello', (ctx) => ctx.reply('Hello'));
 
 // ------------- LAUNCH -------------
@@ -138,6 +140,12 @@ function markDoned(name, done) {
             tasks[i].done = true;
             break;
         }
+    }
+}
+
+function clearDoned() {
+    for(var i in tasks) {
+        tasks[i].done = false
     }
 }
 
