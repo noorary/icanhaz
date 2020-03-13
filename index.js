@@ -75,13 +75,12 @@ const doned = new WizardScene(
     },
 
     (ctx) => {
-        var name = ctx.message.text
-        markDoned(name)
+        var name = ctx.message.text;
+        markDoned(name);
 
         return ctx.scene.leave();
-
     }
-)
+);
 
 // ------------- SETUP -------------
 
@@ -105,10 +104,10 @@ icanhazbot.command('task', (ctx) => {
 });
 
 icanhazbot.command('done', (ctx) => {
-    ctx.scene.enter('doned')
-})
+    ctx.scene.enter('doned');
+});
 
-icanhazbot.command('clear', (ctx) => clearDoned())
+icanhazbot.command('clear', (ctx) => clearDoned());
 
 icanhazbot.command('hello', (ctx) => ctx.reply('Hello'));
 
@@ -144,8 +143,8 @@ function markDoned(name, done) {
 }
 
 function clearDoned() {
-    for(var i in tasks) {
-        tasks[i].done = false
+    for (var i in tasks) {
+        tasks[i].done = false;
     }
 }
 
@@ -156,4 +155,8 @@ function taskPrinter(task) {
 
 function catPrinter(cat) {
     return cat;
+}
+
+function commandPrinter(command) {
+    return command.name + ' - ' + command.desc;
 }
