@@ -37,39 +37,17 @@ function printList(ctx, mylist, nomsg) {
 
 icanhazbot.command('hello', (ctx) => ctx.reply('Hello'));
 
-const stepHandler = new Composer()
-stepHandler.action('next', (ctx) => {
-  ctx.reply('Step 2. Via inline button')
-  return ctx.wizard.next()
-})
-stepHandler.command('next', (ctx) => {
-  ctx.reply('Step 2. Via command')
-  return ctx.wizard.next()
-})
-stepHandler.use((ctx) => ctx.replyWithMarkdown('Press `Next` button or type /next'))
+// const stepHandler = new Composer()
+// stepHandler.action('next', (ctx) => {
+//   ctx.reply('Step 2. Via inline button')
+//   return ctx.wizard.next()
+// })
+// stepHandler.command('next', (ctx) => {
+//   ctx.reply('Step 2. Via command')
+//   return ctx.wizard.next()
+// })
+// stepHandler.use((ctx) => ctx.replyWithMarkdown('Press `Next` button or type /next'))
 
-const superWizard = new WizardScene('super-wizard',
-  (ctx) => {
-    ctx.reply('Step 1', Markup.inlineKeyboard([
-      Markup.urlButton('❤️', 'http://telegraf.js.org'),
-      Markup.callbackButton('➡️ Next', 'next')
-    ]).extra())
-    return ctx.wizard.next()
-  },
-  stepHandler,
-  (ctx) => {
-    ctx.reply('Step 3')
-    return ctx.wizard.next()
-  },
-  (ctx) => {
-    ctx.reply('Step 4')
-    return ctx.wizard.next()
-  },
-  (ctx) => {
-    ctx.reply('Done')
-    return ctx.scene.leave()
-  }
-)
 
 const catadd = new WizardScene(
 
@@ -82,21 +60,16 @@ const catadd = new WizardScene(
 
     ctx => {
 
-        ctx.wizard.state.newcat = ctx.message.text
+        newcat = ctx.message.text
 
         ctx.reply(
-            'You want to add cat ', newcat
+            `You added cat ${newcat}`
         )
-
-        return ctx.wizard.next();
-
-        
-    },
-
-    ctx => {
-        cats.push(ctx.wizard.state.newcat)
+        cats.push(newcat)
 
         return ctx.scene.leave()
+
+        
     }
 
 
