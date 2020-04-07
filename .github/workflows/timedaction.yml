@@ -1,0 +1,22 @@
+name: "github actions timed test"
+
+on:
+  push:
+    branches:
+      - master
+  schedule:
+    - cron: '55 14 * * *'
+
+jobs:
+  bot:
+    runs-on: windows-latest
+    steps:
+      - name: 'install the fucker'
+        uses: actions/setup-node@v1
+      - name: 'install many little fuckers'
+        run: npm install
+      - name: 'run the fucker'
+        run: node index.js
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          CHAT_ID: ${{ secrets.CHAT_ID }}

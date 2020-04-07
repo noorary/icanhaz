@@ -5,9 +5,9 @@ const Stage = require('telegraf/stage');
 const Markup = require('telegraf/markup');
 const WizardScene = require('telegraf/scenes/wizard');
 require('dotenv').config();
-console.log(process.env.TOKEN);
+console.log(process.env.BOT_TOKEN);
 
-const icanhazbot = new Telegraf(process.env.TOKEN);
+const icanhazbot = new Telegraf(process.env.BOT_TOKEN);
 
 icanhazbot.start((ctx) => ctx.reply('Welcome to ICanHazBot!'));
 
@@ -186,3 +186,10 @@ function allDoned() {
 function niceJob() {
     console.log('u did it :3');
 }
+
+function sendSillyFunnyMessage() {
+    const mySillyMessage = "letsa goo"
+    icanhazbot.telegram.sendMessage(process.env.CHAT_ID, mySillyMessage)
+}
+
+sendSillyFunnyMessage()
