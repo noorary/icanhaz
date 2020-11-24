@@ -4,10 +4,11 @@ const session = require('telegraf/session');
 const Stage = require('telegraf/stage');
 const Markup = require('telegraf/markup');
 const WizardScene = require('telegraf/scenes/wizard');
+const SceneContext = require('telegraf/scenes/context');
 require('dotenv').config();
 console.log(process.env.BOT_TOKEN);
 
-const icanhazbot = new Telegraf(process.env.BOT_TOKEN);
+const icanhazbot = new Telegraf(process.env.BOT_TOKEN, { telegram: {webhookReply: false } });
 
 icanhazbot.start((ctx) => ctx.reply('Welcome to ICanHazBot!'));
 
@@ -15,12 +16,15 @@ var cats = [];
 var tasks = [];
 var commands = [
     { name: '/cat', desc: 'add new cat' },
+    { name: '/addcat', desc: 'add new cat v. 2'},
     { name: '/cats', desc: 'list cats' },
     { name: '/task', desc: 'add new task' },
     { name: '/tasks', desc: 'list tasks' },
     { name: '/done', desc: 'set task doned' },
     { name: '/clear', desc: 'mark all tasks not doned' },
 ];
+
+const getName = new SceneContext('getName')
 
 const NO_CATS = 'no catz :c';
 const NO_TASKS = 'can i haz nothing :3';
@@ -38,6 +42,21 @@ const defaultscene = new WizardScene(
     }
 );
 
+icanhazbot.command(('/addcat', ctx => {
+
+    var msg = ctx.message.text
+
+    if(msg.includes('/addcat')) {
+        var parts = msg.split(" ");
+        var name = parts[1]
+
+        cats.push(name)
+
+        return ctx.reply(`You added cat ${name}`)
+    }
+}))
+
+
 const cat = new WizardScene(
     'catadder',
 
@@ -46,15 +65,15 @@ const cat = new WizardScene(
         return ctx.wizard.next();
     },
 
-    (ctx) => {
-        newcat = ctx.message.text;
+    (ctx => { 
+        newcat = tx.message.text;
 
         ctx.reply(`You added cat ${newcat}`);
         cats.push(newcat);
 
         return ctx.scene.leave();
     }
-);
+));
 
 const task = new WizardScene(
     'taskadder',
