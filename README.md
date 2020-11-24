@@ -35,3 +35,10 @@ Nice to have:
 
 - [ ] klo x -> lähettää vihaisen muistutuksen jos task tekemättä + syyllistävän kissakuvan (random kuva tai kuva kissasta jota task koskee)
 - [ ] klo x -> lähettää iloisen viestin jos kaikki päivän taskit tehty + random iloisen kissakuvan
+
+
+# General things
+
+This bot is made using [Telegraf](https://telegraf.js.org/#/), Telegram bot framework for Node.js. 
+
+ 
